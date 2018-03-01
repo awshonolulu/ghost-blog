@@ -8,6 +8,11 @@ variable "service" {
   default = "ghost"
 }
 
+variable "service_owner" {
+  type    = "string"
+  default = "moe@wslogistics.io"
+}
+
 variable "service_stage" {
   type    = "string"
   default = "dev"
@@ -16,6 +21,11 @@ variable "service_stage" {
 variable "service_instance" {
   type    = "string"
   default = "awshonolulu"
+}
+
+variable "service_ip_whitelist" {
+  type    = "list"
+  default = ["0.0.0.0/32"]
 }
 
 variable "aws_profile" {
