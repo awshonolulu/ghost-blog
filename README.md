@@ -8,7 +8,7 @@ Ghost is a fully open source, hackable platform for building and running a moder
 * Install terraform https://www.terraform.io/intro/getting-started/install.html
 
 ## Installing
-* Updated variables.tf
+* Update variables.tf
 
 Test your configuration
 ```
