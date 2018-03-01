@@ -21,7 +21,7 @@ module "vpc" {
   }
 
   tags = {
-    Owner       = "${var.service_owner}o"
+    Owner       = "${var.service_owner}"
     Provisioner = "Terraform"
     Stage       = "${var.service_stage}"
     Service     = "${var.service}"
