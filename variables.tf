@@ -18,6 +18,15 @@ variable "service_stage" {
   default = "dev"
 }
 
+variable "mysql_user" {
+  type    = "string"
+  default = "ghost"
+}
+
+variable "mysql_pass" {
+  type = "string"
+}
+
 variable "service_instance" {
   type    = "string"
   default = "awshonolulu"
@@ -49,6 +58,10 @@ variable "vpc_public_subnets" {
   description = "Public subnets cidrs to create."
   type        = "list"
   default     = ["10.0.101.0/24", "10.0.102.0/24"]
+}
+
+variable "vpc_database_subnets" {
+  default = ["10.0.3.0/24", "10.0.4.0/24"]
 }
 
 variable "availability_zones" {
