@@ -3,6 +3,9 @@ variable "aws_region" {
   default = "us-west-2"
 }
 
+variable "ssh_key_name" {
+         type = "string"
+}
 variable "service" {
   type    = "string"
   default = "ghost"
