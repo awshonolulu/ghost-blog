@@ -1,9 +1,31 @@
+data "template_file" "ghost-config" {
+  template = "${file("${path.module}/templates/config.json.tpl")}"
+
+  vars {
+    service_endpoint = "${var.service_endpoint}"
+    mysql_host       = "${module.db.this_db_instance_address}"
+    mysql_dbname     = "${module.db.this_db_instance_name}"
+    mysql_user       = "${var.mysql_user}"
+    mysql_pass       = "${var.mysql_pass}"
+  }
+}
+
+data "template_file" "userdata_script" {
+  template = "${file("${path.module}/templates/user_data.sh.tpl")}"
+
+  vars {
+    ghost_config = "${data.template_file.ghost-config.rendered}"
+  }
+}
+
 module "asg" {
   source = "terraform-aws-modules/autoscaling/aws"
 
   name = "${var.service}-${var.service_instance}-ASG"
 
-  key_name = "${var.ssh_key_name}"
+  user_data = "${data.template_file.userdata_script.rendered}"
+  key_name  = "${var.ssh_key_name}"
+
   # Launch configuration
   lc_name = "${var.service}-${var.service_instance}-lc"
 
@@ -26,7 +48,6 @@ module "asg" {
       volume_type = "gp2"
     },
   ]
-
   # Auto scaling group
   asg_name                  = "${var.service}-${var.service_instance}-asg"
   vpc_zone_identifier       = ["${module.vpc.public_subnets}"]

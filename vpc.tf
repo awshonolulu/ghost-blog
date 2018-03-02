@@ -44,15 +44,8 @@ resource "aws_security_group" "ghost-server" {
   }
 
   ingress {
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    security_groups = ["${aws_security_group.ghost-elb.id}"]
-  }
-
-  ingress {
-    from_port       = 443
-    to_port         = 443
+    from_port       = 2368
+    to_port         = 2368
     protocol        = "tcp"
     security_groups = ["${aws_security_group.ghost-elb.id}"]
   }

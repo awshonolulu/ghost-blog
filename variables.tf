@@ -4,8 +4,9 @@ variable "aws_region" {
 }
 
 variable "ssh_key_name" {
-         type = "string"
+  type = "string"
 }
+
 variable "service" {
   type    = "string"
   default = "ghost"
@@ -19,6 +20,11 @@ variable "service_owner" {
 variable "service_stage" {
   type    = "string"
   default = "dev"
+}
+
+variable "service_endpoint" {
+  type    = "string"
+  default = "https://dev.awshonolulu.com"
 }
 
 variable "mysql_user" {
@@ -37,7 +43,7 @@ variable "service_instance" {
 
 variable "service_ip_whitelist" {
   type    = "list"
-  default = ["0.0.0.0/32"]
+  default = ["0.0.0.0/0"]
 }
 
 variable "aws_profile" {
